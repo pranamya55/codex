@@ -357,6 +357,10 @@ client_request_definitions! {
         params: v2::TurnSteerParams,
         response: v2::TurnSteerResponse,
     },
+    TurnInject => "turn/inject" {
+        params: v2::TurnInjectParams,
+        response: v2::TurnInjectResponse,
+    },
     TurnInterrupt => "turn/interrupt" {
         params: v2::TurnInterruptParams,
         response: v2::TurnInterruptResponse,
