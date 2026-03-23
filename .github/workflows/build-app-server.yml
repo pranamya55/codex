@@ -1,0 +1,24 @@
+name: build-app-server
+
+on:
+  workflow_dispatch: {}
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    defaults:
+      run:
+        working-directory: codex-rs
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@1.93.0
+      - name: Build codex-app-server
+        run: cargo build -p codex-app-server --release
+      - name: Package artifact
+        run: |
+          cp target/release/codex-app-server "$GITHUB_WORKSPACE/codex-app-server-linux-x64"
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: codex-app-server-linux-x64
+          path: codex-app-server-linux-x64
