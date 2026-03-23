@@ -15,6 +15,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: dtolnay/rust-toolchain@1.93.0
+      - name: Install build deps
+        run: sudo apt-get update && sudo apt-get install -y libcap-dev pkg-config
       - name: Build codex-app-server
         run: cargo build -p codex-app-server --release -j 2
       - name: Package artifact
