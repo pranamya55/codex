@@ -211,7 +211,7 @@ impl CodexThread {
     }
 
     /// Records a developer-role session-prefix message without creating a new turn boundary.
-    pub(crate) async fn inject_developer_message_without_turn(&self, message: String) {
+    pub async fn inject_developer_message_without_turn(&self, message: String) {
         let pending_item = ResponseInputItem::Message {
             role: "developer".to_string(),
             content: vec![ContentItem::InputText { text: message }],
