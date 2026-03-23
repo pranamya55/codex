@@ -6,14 +6,17 @@ on:
 jobs:
   build:
     runs-on: ubuntu-24.04
+    timeout-minutes: 90
     defaults:
       run:
         working-directory: codex-rs
+    env:
+      CARGO_BUILD_JOBS: "2"
     steps:
       - uses: actions/checkout@v4
       - uses: dtolnay/rust-toolchain@1.93.0
       - name: Build codex-app-server
-        run: cargo build -p codex-app-server --release
+        run: cargo build -p codex-app-server --release -j 2
       - name: Package artifact
         run: |
           cp target/release/codex-app-server "$GITHUB_WORKSPACE/codex-app-server-linux-x64"
